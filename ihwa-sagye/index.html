@@ -58,7 +58,7 @@
   @keyframes bounce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(8px);opacity:1}}
 
   /* ===== shared layout ===== */
-  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
   section{position:relative;z-index:2}
   .deco{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin:0 auto}
   .deco::before,.deco::after{content:"";height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
@@ -66,25 +66,25 @@
   .deco .lozenge{font-size:.8rem;letter-spacing:.3em}
 
   /* ===== INTRO ===== */
-  .intro{padding:72px 0 40px;display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center}
-  .intro-art{position:relative;width:300px;height:300px}
+  .intro{padding:80px 0 48px;display:grid;grid-template-columns:500px 1fr;gap:72px;align-items:center}
+  .intro-art{position:relative;width:500px;height:340px;flex-shrink:0}
   .intro-art .jacket{
-    position:relative;z-index:2;width:300px;height:300px;object-fit:cover;border-radius:6px;
+    position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:2;
+    width:340px;height:340px;object-fit:cover;border-radius:6px;
     border:1px solid var(--line);box-shadow:var(--shadow);
   }
   .intro-art .vinyl{
-    position:absolute;top:50%;left:62%;width:280px;height:280px;border-radius:50%;z-index:1;
+    position:absolute;top:50%;left:190px;width:300px;height:300px;border-radius:50%;z-index:1;
     transform:translateY(-50%);
     background:repeating-radial-gradient(circle at 50% 50%, #0c0905 0 2px, #1a140d 2px 4px);
     box-shadow:inset 0 0 0 2px #2a2014, 0 14px 40px rgba(0,0,0,.6);
-    transition:left .6s ease;
   }
   .intro-art .vinyl::after{
-    content:"";position:absolute;top:50%;left:50%;width:92px;height:92px;border-radius:50%;
+    content:"";position:absolute;top:50%;left:50%;width:96px;height:96px;border-radius:50%;
     transform:translate(-50%,-50%);
     background:radial-gradient(circle, var(--wine) 0 40%, var(--gold-deep) 41% 46%, #1a140d 47%);
   }
-  body.playing .intro-art .vinyl{left:74%;animation:spin 6s linear infinite}
+  body.playing .intro-art .vinyl{animation:spin 6s linear infinite}
   @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
 
   .kicker{
@@ -146,13 +146,30 @@
   .track.active .t-play{background:var(--gold);color:var(--ink);border-color:var(--gold)}
   .t-play svg{width:15px;height:15px;display:block}
 
-  .t-detail{max-height:0;overflow:hidden;transition:max-height .5s ease}
-  .track.active .t-detail{max-height:2400px}
-  .t-detail-inner{padding:6px 22px 24px}
-  .lyric{text-align:center;color:var(--txt);font-size:1.02rem;line-height:1.95;letter-spacing:.01em}
+  /* ===== LYRIC DRAWER (right side) ===== */
+  .drawer{position:fixed;top:0;bottom:0;right:0;width:480px;max-width:92vw;z-index:60;
+    background:linear-gradient(165deg,#271e13,#15100a 62%);border-left:1px solid var(--gold);
+    box-shadow:-26px 0 64px rgba(0,0,0,.62);transform:translateX(105%);
+    transition:transform .44s cubic-bezier(.38,0,.1,1);display:flex;flex-direction:column;overflow:hidden}
+  .drawer.open{transform:translateX(0)}
+  .drawer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
+    padding:26px 28px 18px;border-bottom:1px solid var(--line-soft);flex-shrink:0}
+  .dr-num{font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.22em;color:var(--gold)}
+  .dr-title{font-family:"Noto Serif KR",serif;font-weight:700;font-size:1.6rem;color:var(--cream);margin-top:5px;line-height:1.2}
+  .dr-coord{font-size:.78rem;color:var(--txt-dim);margin-top:8px;letter-spacing:.02em}
+  .dr-close{background:none;border:1px solid var(--line);color:var(--gold);width:38px;height:38px;
+    border-radius:50%;cursor:pointer;flex-shrink:0;font-size:.95rem;line-height:1;transition:.2s}
+  .dr-close:hover{background:var(--gold);color:var(--ink);transform:rotate(90deg)}
+  .drawer-body{padding:24px 30px 130px;overflow-y:auto;flex:1}
+  .drawer-body::-webkit-scrollbar{width:7px}
+  .drawer-body::-webkit-scrollbar-thumb{background:var(--gold-deep);border-radius:4px}
+  .drawer-scrim{position:fixed;inset:0;z-index:55;background:rgba(8,6,3,.5);backdrop-filter:blur(2px);
+    opacity:0;visibility:hidden;transition:.32s}
+  .drawer-scrim.open{opacity:1;visibility:visible}
+  .lyric{text-align:center;color:var(--txt);font-size:1.04rem;line-height:1.95;letter-spacing:.01em}
   .lyric .stanza{margin:0 0 1.1em}
   .lyric .instrumental{color:var(--txt-dim);font-style:italic;letter-spacing:.04em}
-  .dual{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  .dual{display:grid;grid-template-columns:1fr;gap:14px;margin-top:26px}
   .d-box{border:1px solid var(--line-soft);border-radius:8px;padding:14px 16px;background:rgba(14,10,6,.4);font-size:.9rem;line-height:1.7}
   .d-box.surface{border-top:2px solid var(--gold-deep)}
   .d-box.hidden{border-top:2px solid var(--wine)}
@@ -181,7 +198,7 @@
     background:linear-gradient(180deg,rgba(20,15,9,.86),rgba(13,9,5,.97));
     backdrop-filter:blur(14px);border-top:1px solid var(--line);
     display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
-    padding:12px 22px;transform:translateY(100%);transition:transform .4s ease;
+    padding:12px 22px;transform:translateY(100%);transition:transform .4s ease;z-index:65;
   }
   .player.show{transform:translateY(0)}
   .p-left{display:flex;align-items:center;gap:14px;min-width:0}
@@ -207,8 +224,11 @@
   .p-vol input{width:78px;accent-color:var(--gold)}
 
   @media(max-width:760px){
-    .intro{grid-template-columns:1fr;text-align:center;gap:30px;padding-top:48px}
-    .intro-art{margin:0 auto}
+    .intro{grid-template-columns:1fr;text-align:center;gap:28px;padding-top:48px}
+    .intro-art{width:260px;height:260px;margin:0 auto}
+    .intro-art .jacket{width:260px;height:260px;left:50%;transform:translate(-50%,-50%)}
+    .intro-art .vinyl{display:none}
+    .drawer{width:100%;max-width:100%}
     .deco::before,.deco::after{width:36px}
     .intro h1{font-size:2.2rem}
     .meta-row,.deco{justify-content:center}
@@ -290,6 +310,22 @@
     <div>오얏꽃 사계 · Achmage's Joseon Jazz Vol.1</div>
     <div style="margin-top:8px;opacity:.7">Music generated with Suno 5.5 · Composed with the joseon-jazz-album skill · © 2026 Achmage</div>
   </footer>
+
+  <aside class="drawer" id="drawer" aria-label="가사">
+    <div class="drawer-head">
+      <div>
+        <div class="dr-num" id="drNum"></div>
+        <div class="dr-title" id="drTitle"></div>
+        <div class="dr-coord" id="drCoord"></div>
+      </div>
+      <button class="dr-close" id="drClose" aria-label="닫기">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="lyric" id="drLyric"></div>
+      <div class="dual" id="drDual"></div>
+    </div>
+  </aside>
+  <div class="drawer-scrim" id="scrim"></div>
 
   <div class="player" id="player">
     <div class="p-left">
@@ -426,14 +462,7 @@ SEASONS.forEach(se=>{
         </div>
         ${cipher}
         <div class="t-play">${PLAY_SVG}</div>
-      </div>
-      <div class="t-detail"><div class="t-detail-inner">
-        <div class="lyric">${renderLyric(t.lyrics)}</div>
-        <div class="dual">
-          <div class="d-box surface"><span class="d-label">Surface <span class="ko-label">· 순사의 귀</span></span>${t.surface}</div>
-          <div class="d-box hidden"><span class="d-label">Hidden <span class="ko-label">· 우리의 귀</span></span>${t.hidden}</div>
-        </div>
-      </div></div>`;
+      </div>`;
     el.querySelector('.track-row').addEventListener('click',()=>selectTrack(t.n-1));
     grp.appendChild(el);
   });
@@ -460,6 +489,20 @@ const tracksEls = ()=>[...document.querySelectorAll('.track')];
 const player=document.getElementById('player');
 const playBtn=document.getElementById('playBtn'), playIcon=document.getElementById('playIcon');
 const pTitle=document.getElementById('pTitle'), pSub=document.getElementById('pSub');
+const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
+const drNum=document.getElementById('drNum'), drTitle=document.getElementById('drTitle'), drCoord=document.getElementById('drCoord');
+const drLyric=document.getElementById('drLyric'), drDual=document.getElementById('drDual');
+
+function openDrawer(t){
+  drNum.textContent=String(t.n).padStart(2,'0')+' / 15';
+  drTitle.textContent=t.title;
+  drCoord.textContent=`${t.season} · ${t.tempo} · ${t.mood} · ${t.inst}`;
+  drLyric.innerHTML=renderLyric(t.lyrics);
+  drDual.innerHTML=`<div class="d-box surface"><span class="d-label">Surface <span class="ko-label">· 순사의 귀</span></span>${t.surface}</div><div class="d-box hidden"><span class="d-label">Hidden <span class="ko-label">· 우리의 귀</span></span>${t.hidden}</div>`;
+  drawer.scrollTop=0; drawer.querySelector('.drawer-body').scrollTop=0;
+  drawer.classList.add('open'); scrim.classList.add('open');
+}
+function closeDrawer(){ drawer.classList.remove('open'); scrim.classList.remove('open'); }
 
 function selectTrack(i, autoplay=true){
   const t=TRACKS[i];
@@ -471,9 +514,8 @@ function selectTrack(i, autoplay=true){
   }
   tracksEls().forEach(el=>el.classList.toggle('active', +el.dataset.idx===i));
   player.classList.add('show');
-  const card=tracksEls().find(el=>+el.dataset.idx===i);
+  openDrawer(t);
   if(autoplay){ audio.play().catch(()=>{}); }
-  if(card){ const y=card.getBoundingClientRect().top+window.scrollY-90; window.scrollTo({top:y,behavior:'smooth'}); }
 }
 function togglePlay(){
   if(current<0){ selectTrack(0); return; }
@@ -522,8 +564,11 @@ const vol=document.getElementById('vol'); audio.volume=0.9;
 vol.addEventListener('input',()=>audio.volume=vol.value);
 
 // keyboard
+document.getElementById('drClose').onclick=closeDrawer;
+scrim.onclick=closeDrawer;
 document.addEventListener('keydown',e=>{
   if(['INPUT','TEXTAREA'].includes(e.target.tagName))return;
+  if(e.code==='Escape'){closeDrawer();return;}
   if(e.code==='Space'){e.preventDefault();togglePlay();}
   else if(e.code==='ArrowRight')next();
   else if(e.code==='ArrowLeft')prev();
