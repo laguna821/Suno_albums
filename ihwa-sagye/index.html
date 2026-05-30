@@ -213,6 +213,9 @@
   .p-btns .main{width:46px;height:46px;border-radius:50%;background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--ink)}
   .p-btns .main:hover{transform:scale(1.06)}
   .p-btns svg{width:18px;height:18px}.p-btns .main svg{width:20px;height:20px}
+  .p-btns .main .ic-pause{display:none}
+  body.playing .p-btns .main .ic-play{display:none}
+  body.playing .p-btns .main .ic-pause{display:inline}
   .p-seek{display:flex;align-items:center;gap:10px;width:100%;max-width:520px}
   .p-time{font-family:"Cinzel",serif;font-size:.7rem;color:var(--txt-dim);width:38px;text-align:center;flex-shrink:0}
   .bar{flex:1;height:4px;border-radius:3px;background:rgba(201,169,106,.16);position:relative;cursor:pointer}
@@ -338,7 +341,7 @@
     <div class="p-center">
       <div class="p-btns">
         <button id="prevBtn" title="이전 곡 (←)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
-        <button class="main" id="playBtn" title="재생/일시정지 (Space)"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        <button class="main" id="playBtn" title="재생/일시정지 (Space)"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
         <button id="nextBtn" title="다음 곡 (→)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
       </div>
       <div class="p-seek">
@@ -487,7 +490,7 @@ MOTIFS.forEach(m=>{
 // ---- player ----
 const tracksEls = ()=>[...document.querySelectorAll('.track')];
 const player=document.getElementById('player');
-const playBtn=document.getElementById('playBtn'), playIcon=document.getElementById('playIcon');
+const playBtn=document.getElementById('playBtn');
 const pTitle=document.getElementById('pTitle'), pSub=document.getElementById('pSub');
 const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim');
 const drNum=document.getElementById('drNum'), drTitle=document.getElementById('drTitle'), drCoord=document.getElementById('drCoord');
@@ -529,10 +532,9 @@ document.getElementById('nextBtn').onclick=next;
 document.getElementById('prevBtn').onclick=prev;
 document.getElementById('playAll').onclick=()=>selectTrack(0);
 
-audio.addEventListener('play',()=>{ playIcon.outerHTML=PAUSE_SVG.replace('<svg','<svg id="playIcon"'); refreshIcon(); document.body.classList.add('playing'); updateTrackIcons(true); });
-audio.addEventListener('pause',()=>{ document.body.classList.remove('playing'); updateTrackIcons(false); refreshIcon(); });
+audio.addEventListener('play',()=>{ document.body.classList.add('playing'); updateTrackIcons(true); });
+audio.addEventListener('pause',()=>{ document.body.classList.remove('playing'); updateTrackIcons(false); });
 audio.addEventListener('ended',next);
-function refreshIcon(){ const ic=document.getElementById('playIcon'); if(ic) ic.outerHTML=(audio.paused?PLAY_SVG:PAUSE_SVG).replace('<svg','<svg id="playIcon"'); }
 function updateTrackIcons(playing){
   tracksEls().forEach(el=>{
     const ic=el.querySelector('.t-play');
