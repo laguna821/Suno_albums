@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Achmage · Suno Albums</title>
+<meta name="description" content="Achmage가 Suno로 빚은 앨범 컬렉션. 조선 재즈를 비롯한 AI 음악 앨범.">
+<meta property="og:title" content="Achmage · Suno Albums">
+<meta property="og:description" content="Achmage가 Suno로 빚은 앨범 컬렉션.">
+<meta property="og:image" content="ihwa-sagye/images/cover.png">
+<link rel="icon" href="ihwa-sagye/images/cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0a06;--bg:#15100a;--panel:#241c12;--gold:#c9a96a;--gold-2:#e3c98c;
+    --gold-deep:#9a7d44;--cream:#ece0c8;--wine:#8b3a3a;--txt:#e7dcc6;--txt-dim:#b3a484;
+    --line:rgba(201,169,106,.28);--line-soft:rgba(201,169,106,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--ink);color:var(--txt);min-height:100vh;
+    font-family:"Gowun Batang","Noto Serif KR",serif;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(circle at 50% -10%,rgba(201,169,106,.1),transparent 55%),
+               radial-gradient(circle at 50% 120%,rgba(139,58,58,.07),transparent 55%);
+  }
+  ::selection{background:var(--gold);color:var(--ink)}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+  header{text-align:center;padding:96px 24px 50px}
+  .brand{font-family:"Cinzel",serif;font-weight:700;letter-spacing:.32em;font-size:2.6rem;color:var(--cream);text-transform:uppercase}
+  .brand .dot{color:var(--gold)}
+  .tagline{color:var(--gold-2);letter-spacing:.18em;font-family:"Cinzel",serif;font-size:.8rem;text-transform:uppercase;margin-top:16px}
+  .sub{color:var(--txt-dim);margin-top:14px;font-size:.98rem}
+  .deco{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin:24px auto 0}
+  .deco::before,.deco::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+  .deco::after{background:linear-gradient(90deg,var(--gold-deep),transparent)}
+  .deco span{font-size:.78rem;letter-spacing:.3em}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;padding:24px 0 90px}
+  .album{
+    display:block;border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(36,28,18,.5),rgba(21,16,10,.5));
+    transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+  }
+  .album:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 22px 50px rgba(0,0,0,.5)}
+  .album .cover{position:relative;aspect-ratio:1/1;overflow:hidden}
+  .album .cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .album:hover .cover img{transform:scale(1.04)}
+  .album .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,10,6,.85))}
+  .album .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.16em;color:var(--gold-2);border:1px solid var(--line);background:rgba(14,10,6,.55);padding:5px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+  .album .play-hint{position:absolute;right:14px;bottom:14px;z-index:2;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--ink);box-shadow:0 8px 22px rgba(201,169,106,.4);opacity:0;transform:translateY(8px);transition:.25s}
+  .album:hover .play-hint{opacity:1;transform:translateY(0)}
+  .album .info{padding:18px 20px 22px}
+  .album .a-kicker{font-family:"Cinzel",serif;font-size:.66rem;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+  .album .a-title{font-family:"Noto Serif KR",serif;font-weight:700;font-size:1.4rem;color:var(--cream);margin-top:6px}
+  .album .a-title .hanja{font-size:.85rem;color:var(--gold);margin-left:8px;letter-spacing:.1em}
+  .album .a-desc{color:var(--txt-dim);font-size:.88rem;margin-top:8px}
+  .album .a-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .album .a-meta span{font-family:"Cinzel",serif;font-size:.64rem;letter-spacing:.1em;color:var(--gold);border:1px solid var(--line-soft);border-radius:999px;padding:4px 10px}
+
+  .soon{display:grid;place-items:center;border:1px dashed var(--line-soft);border-radius:14px;color:var(--txt-dim);min-height:360px;text-align:center;background:rgba(20,14,8,.25)}
+  .soon .s-mark{font-family:"Noto Serif KR",serif;font-size:1.8rem;color:var(--gold-deep);letter-spacing:.2em;margin-bottom:10px}
+  .soon .s-text{font-family:"Cinzel",serif;letter-spacing:.2em;font-size:.74rem}
+
+  footer{text-align:center;padding:30px 24px 50px;color:var(--txt-dim);font-size:.8rem;letter-spacing:.05em;position:relative;z-index:1}
+  footer .han{font-family:"Noto Serif KR",serif;color:var(--gold);letter-spacing:.3em;margin-bottom:8px}
+
+  @media(max-width:640px){ .brand{font-size:1.9rem;letter-spacing:.2em} header{padding-top:64px} }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand">ACHMAGE<span class="dot">.</span></div>
+    <div class="tagline">Suno Albums</div>
+    <p class="sub">AI로 빚은 앨범 컬렉션 — 한 곡이 아니라, 한 장의 앨범으로.</p>
+    <div class="deco"><span>◆</span></div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <footer>
+    <div class="han">李 花 四 季</div>
+    <div>© 2026 Achmage · Made with Suno 5.5</div>
+  </footer>
+
+<script>
+const ALBUMS = [
+  {
+    slug:"ihwa-sagye",
+    kicker:"Joseon Jazz · Vol.1",
+    title:"오얏꽃 사계",
+    hanja:"李花四季",
+    desc:"사라진 나라를 향한 네 계절. 1930년대 경성 재즈 카바레, 15트랙 컨셉 앨범.",
+    cover:"ihwa-sagye/images/cover.png",
+    badge:"Vol.1",
+    meta:["15 Tracks","1930s 경성","Suno 5.5"]
+  }
+  // 다음 앨범은 여기에 객체를 추가하고 같은 형식의 폴더를 만들면 됩니다.
+];
+
+const PLAY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const grid = document.getElementById('grid');
+
+ALBUMS.forEach(a=>{
+  const card = document.createElement('a');
+  card.className='album'; card.href=a.slug+'/';
+  card.innerHTML = `
+    <div class="cover">
+      <span class="badge">${a.badge}</span>
+      <img src="${a.cover}" alt="${a.title} 커버" loading="lazy">
+      <div class="play-hint">${PLAY}</div>
+    </div>
+    <div class="info">
+      <div class="a-kicker">${a.kicker}</div>
+      <div class="a-title">${a.title}<span class="hanja">${a.hanja}</span></div>
+      <div class="a-desc">${a.desc}</div>
+      <div class="a-meta">${a.meta.map(m=>`<span>${m}</span>`).join('')}</div>
+    </div>`;
+  grid.appendChild(card);
+});
+
+// 다음 앨범 자리(placeholder)
+const soon = document.createElement('div');
+soon.className='soon';
+soon.innerHTML = '<div><div class="s-mark">次</div><div class="s-text">NEXT ALBUM</div></div>';
+grid.appendChild(soon);
+</script>
+</body>
+</html>

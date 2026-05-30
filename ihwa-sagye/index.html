@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>오얏꽃 사계 (李花四季) · Achmage's Joseon Jazz Vol.1</title>
+<meta name="description" content="조선 재즈 — 1930년대 경성 재즈 카바레. 사라진 나라를 향한 네 계절, 15트랙 컨셉 앨범. Produced by Achmage.">
+<meta property="og:title" content="오얏꽃 사계 (李花四季)">
+<meta property="og:description" content="Achmage's Joseon Jazz Vol.1 — 사라진 나라를 향한 네 계절, 15트랙 컨셉 앨범.">
+<meta property="og:image" content="images/cover.png">
+<meta property="og:type" content="music.album">
+<link rel="icon" href="images/cover.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0a06; --bg:#15100a; --bg2:#1d160d; --panel:#241c12; --panel-2:#2c2216;
+    --gold:#c9a96a; --gold-2:#e3c98c; --gold-deep:#9a7d44; --cream:#ece0c8;
+    --wine:#8b3a3a; --wine-2:#a84a46; --autumn:#bb5a2c;
+    --line:rgba(201,169,106,.28); --line-soft:rgba(201,169,106,.14);
+    --txt:#e7dcc6; --txt-dim:#b3a484; --shadow:0 20px 60px rgba(0,0,0,.55);
+    --spring:#d98ca0; --summer:#d8a64a; --autumnc:#c1612c; --winter:#8fa6c0; --rebirth:#b6c07a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink); color:var(--txt);
+    font-family:"Gowun Batang","Noto Serif KR",serif; line-height:1.75;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    padding-bottom:96px;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.5;
+    background:radial-gradient(circle at 50% 0%, rgba(201,169,106,.06), transparent 60%),
+               radial-gradient(circle at 50% 100%, rgba(139,58,58,.05), transparent 55%);
+  }
+  ::selection{background:var(--gold);color:var(--ink)}
+  a{color:var(--gold-2);text-decoration:none}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative; min-height:100svh; width:100%;
+    background:url("images/hero.png") center/cover no-repeat;
+    display:flex; align-items:flex-end; justify-content:center;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,10,6,.18) 0%, rgba(14,10,6,0) 30%, rgba(14,10,6,.15) 62%, var(--ink) 99%);
+  }
+  .hero-caption{position:relative; z-index:2; text-align:center; padding:0 0 5vh}
+  .scroll-cue{
+    width:46px;height:46px;border:1px solid var(--line);border-radius:50%;
+    display:grid;place-items:center;margin:0 auto;color:var(--gold-2);
+    animation:bounce 2.4s ease-in-out infinite; backdrop-filter:blur(3px);
+    background:rgba(20,14,8,.35);
+  }
+  @keyframes bounce{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(8px);opacity:1}}
+
+  /* ===== shared layout ===== */
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  section{position:relative;z-index:2}
+  .deco{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin:0 auto}
+  .deco::before,.deco::after{content:"";height:1px;width:60px;background:linear-gradient(90deg,transparent,var(--gold-deep))}
+  .deco::after{background:linear-gradient(90deg,var(--gold-deep),transparent)}
+  .deco .lozenge{font-size:.8rem;letter-spacing:.3em}
+
+  /* ===== INTRO ===== */
+  .intro{padding:72px 0 40px;display:grid;grid-template-columns:300px 1fr;gap:48px;align-items:center}
+  .intro-art{position:relative;width:300px;height:300px}
+  .intro-art .jacket{
+    position:relative;z-index:2;width:300px;height:300px;object-fit:cover;border-radius:6px;
+    border:1px solid var(--line);box-shadow:var(--shadow);
+  }
+  .intro-art .vinyl{
+    position:absolute;top:50%;left:62%;width:280px;height:280px;border-radius:50%;z-index:1;
+    transform:translateY(-50%);
+    background:repeating-radial-gradient(circle at 50% 50%, #0c0905 0 2px, #1a140d 2px 4px);
+    box-shadow:inset 0 0 0 2px #2a2014, 0 14px 40px rgba(0,0,0,.6);
+    transition:left .6s ease;
+  }
+  .intro-art .vinyl::after{
+    content:"";position:absolute;top:50%;left:50%;width:92px;height:92px;border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, var(--wine) 0 40%, var(--gold-deep) 41% 46%, #1a140d 47%);
+  }
+  body.playing .intro-art .vinyl{left:74%;animation:spin 6s linear infinite}
+  @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+
+  .kicker{
+    font-family:"Cinzel",serif;letter-spacing:.34em;text-transform:uppercase;
+    font-size:.74rem;color:var(--gold-2);display:block;margin-bottom:14px;
+  }
+  .intro h1{
+    font-family:"Noto Serif KR",serif;font-weight:700;font-size:2.9rem;line-height:1.15;
+    color:var(--cream);letter-spacing:.02em;
+  }
+  .intro h1 .hanja{font-size:1.4rem;color:var(--gold);margin-left:10px;letter-spacing:.1em}
+  .subtitle{color:var(--gold-2);font-size:1.05rem;margin-top:6px;letter-spacing:.04em}
+  .lead{color:var(--txt-dim);margin-top:18px;font-size:.98rem;line-height:1.9}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{
+    font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.12em;color:var(--gold);
+    border:1px solid var(--line);border-radius:999px;padding:5px 13px;background:rgba(201,169,106,.05);
+  }
+  .play-all{
+    margin-top:26px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    font-family:"Gowun Batang",serif;font-size:1rem;color:var(--ink);font-weight:700;
+    background:linear-gradient(180deg,var(--gold-2),var(--gold));border:none;border-radius:999px;
+    padding:13px 28px;box-shadow:0 8px 26px rgba(201,169,106,.28);transition:transform .15s, box-shadow .15s;
+  }
+  .play-all:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,169,106,.4)}
+
+  /* ===== TRACKLIST ===== */
+  .tracklist{padding:38px 0 20px}
+  .section-head{text-align:center;margin-bottom:30px}
+  .section-head h2{font-family:"Cinzel",serif;letter-spacing:.18em;font-weight:600;color:var(--gold-2);font-size:1.1rem;margin-bottom:12px}
+  .season-group{margin-bottom:30px}
+  .season-label{
+    display:flex;align-items:center;gap:16px;margin:30px 0 14px;
+    font-family:"Noto Serif KR",serif;color:var(--season,var(--gold));font-weight:500;letter-spacing:.1em;
+  }
+  .season-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--season,var(--gold-deep)),transparent);opacity:.5}
+  .season-label .han{font-size:.85rem;color:var(--txt-dim);letter-spacing:.2em}
+
+  .track{
+    border:1px solid var(--line-soft);border-left:3px solid var(--season,var(--gold-deep));
+    border-radius:8px;margin-bottom:10px;background:linear-gradient(180deg,rgba(36,28,18,.5),rgba(21,16,10,.5));
+    overflow:hidden;transition:border-color .2s, background .2s;
+  }
+  .track:hover{border-color:var(--line);background:linear-gradient(180deg,rgba(44,34,22,.6),rgba(28,21,13,.6))}
+  .track.active{border-color:var(--gold);box-shadow:0 0 0 1px rgba(201,169,106,.25),0 14px 36px rgba(0,0,0,.4)}
+  .track-row{display:flex;align-items:center;gap:16px;padding:15px 18px;cursor:pointer}
+  .t-num{font-family:"Cinzel",serif;font-size:1.1rem;color:var(--gold);width:30px;text-align:center;flex-shrink:0}
+  .track.active .t-num{color:var(--gold-2)}
+  .t-main{flex:1;min-width:0}
+  .t-title{font-size:1.12rem;color:var(--cream);font-weight:700;letter-spacing:.01em}
+  .t-coord{font-size:.76rem;color:var(--txt-dim);margin-top:3px;letter-spacing:.02em}
+  .t-cipher{font-size:.62rem;letter-spacing:.18em;flex-shrink:0;color:var(--wine-2)}
+  .t-cipher .on{color:var(--wine-2)}.t-cipher .off{color:rgba(180,140,120,.25)}
+  .t-play{
+    width:38px;height:38px;flex-shrink:0;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--gold);background:rgba(201,169,106,.05);transition:.2s;
+  }
+  .track:hover .t-play{border-color:var(--gold);color:var(--gold-2)}
+  .track.active .t-play{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .t-play svg{width:15px;height:15px;display:block}
+
+  .t-detail{max-height:0;overflow:hidden;transition:max-height .5s ease}
+  .track.active .t-detail{max-height:2400px}
+  .t-detail-inner{padding:6px 22px 24px}
+  .lyric{text-align:center;color:var(--txt);font-size:1.02rem;line-height:1.95;letter-spacing:.01em}
+  .lyric .stanza{margin:0 0 1.1em}
+  .lyric .instrumental{color:var(--txt-dim);font-style:italic;letter-spacing:.04em}
+  .dual{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  .d-box{border:1px solid var(--line-soft);border-radius:8px;padding:14px 16px;background:rgba(14,10,6,.4);font-size:.9rem;line-height:1.7}
+  .d-box.surface{border-top:2px solid var(--gold-deep)}
+  .d-box.hidden{border-top:2px solid var(--wine)}
+  .d-label{display:block;font-family:"Cinzel",serif;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}
+  .d-box.surface .d-label{color:var(--gold)}
+  .d-box.hidden .d-label{color:var(--wine-2)}
+  .d-box .ko-label{color:var(--txt-dim);font-size:.78rem}
+
+  /* ===== MOTIFS / ABOUT ===== */
+  .panel-section{padding:46px 0}
+  .card{border:1px solid var(--line-soft);border-radius:12px;background:linear-gradient(180deg,rgba(36,28,18,.45),rgba(21,16,10,.45));padding:30px 28px}
+  .motif-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .motif{border:1px solid var(--line-soft);border-radius:8px;padding:13px 15px;background:rgba(14,10,6,.3)}
+  .motif .m-key{color:var(--gold-2);font-weight:700;font-size:1rem}
+  .motif .m-body{font-size:.85rem;color:var(--txt-dim);margin-top:4px;line-height:1.6}
+  .motif .m-body b{color:var(--wine-2);font-weight:400}
+  .about p{color:var(--txt-dim);font-size:.95rem;line-height:1.95;margin-bottom:14px}
+  .about .sig{font-family:"Cinzel",serif;letter-spacing:.2em;color:var(--gold-2);margin-top:8px}
+
+  footer{text-align:center;padding:46px 24px 30px;color:var(--txt-dim);font-size:.8rem;letter-spacing:.05em;position:relative;z-index:2}
+  footer .han{font-family:"Noto Serif KR",serif;color:var(--gold);letter-spacing:.3em;font-size:1rem;margin-bottom:10px}
+
+  /* ===== STICKY PLAYER ===== */
+  .player{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:linear-gradient(180deg,rgba(20,15,9,.86),rgba(13,9,5,.97));
+    backdrop-filter:blur(14px);border-top:1px solid var(--line);
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;
+    padding:12px 22px;transform:translateY(100%);transition:transform .4s ease;
+  }
+  .player.show{transform:translateY(0)}
+  .p-left{display:flex;align-items:center;gap:14px;min-width:0}
+  .p-art{width:52px;height:52px;border-radius:6px;object-fit:cover;border:1px solid var(--line);flex-shrink:0}
+  .p-meta{min-width:0}
+  .p-title{color:var(--cream);font-weight:700;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-sub{color:var(--txt-dim);font-size:.74rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-center{display:flex;flex-direction:column;gap:7px;align-items:center;min-width:0}
+  .p-btns{display:flex;align-items:center;gap:18px}
+  .p-btns button{background:none;border:none;color:var(--gold);cursor:pointer;display:grid;place-items:center;padding:0;transition:.15s}
+  .p-btns button:hover{color:var(--gold-2);transform:scale(1.1)}
+  .p-btns .main{width:46px;height:46px;border-radius:50%;background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--ink)}
+  .p-btns .main:hover{transform:scale(1.06)}
+  .p-btns svg{width:18px;height:18px}.p-btns .main svg{width:20px;height:20px}
+  .p-seek{display:flex;align-items:center;gap:10px;width:100%;max-width:520px}
+  .p-time{font-family:"Cinzel",serif;font-size:.7rem;color:var(--txt-dim);width:38px;text-align:center;flex-shrink:0}
+  .bar{flex:1;height:4px;border-radius:3px;background:rgba(201,169,106,.16);position:relative;cursor:pointer}
+  .bar-fill{position:absolute;inset:0 auto 0 0;width:0;border-radius:3px;background:linear-gradient(90deg,var(--gold-deep),var(--gold-2))}
+  .bar-knob{position:absolute;top:50%;left:0;width:11px;height:11px;border-radius:50%;background:var(--gold-2);transform:translate(-50%,-50%);box-shadow:0 0 8px rgba(201,169,106,.6);opacity:0;transition:opacity .15s}
+  .bar:hover .bar-knob{opacity:1}
+  .p-right{display:flex;align-items:center;gap:6px}
+  .p-vol{display:flex;align-items:center;gap:8px;color:var(--gold)}
+  .p-vol input{width:78px;accent-color:var(--gold)}
+
+  @media(max-width:760px){
+    .intro{grid-template-columns:1fr;text-align:center;gap:30px;padding-top:48px}
+    .intro-art{margin:0 auto}
+    .deco::before,.deco::after{width:36px}
+    .intro h1{font-size:2.2rem}
+    .meta-row,.deco{justify-content:center}
+    .dual,.motif-grid{grid-template-columns:1fr}
+    .player{grid-template-columns:1fr auto;gap:10px;padding:9px 12px}
+    .p-center{grid-column:1/-1;order:3;width:100%}
+    .p-seek{max-width:none}
+    .p-right{display:none}
+    .p-art{width:44px;height:44px}
+    body{padding-bottom:128px}
+  }
+  @media(max-width:420px){
+    .t-coord{display:none}
+    .t-cipher{display:none}
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero" id="top">
+    <div class="hero-caption">
+      <div class="scroll-cue" aria-hidden="true">▾</div>
+    </div>
+  </section>
+
+  <main>
+    <section class="intro wrap">
+      <div class="intro-art">
+        <div class="vinyl" aria-hidden="true"></div>
+        <img class="jacket" src="images/cover.png" alt="오얏꽃 사계 앨범 커버">
+      </div>
+      <div class="intro-text">
+        <span class="kicker">Achmage's Joseon Jazz Vol.1</span>
+        <h1>오얏꽃 사계 <span class="hanja">李花四季</span></h1>
+        <p class="subtitle">사라진 나라를 향한 네 계절</p>
+        <p class="lead">1930년대 경성의 재즈 카바레. 한 여가수가 사계를 통과하며 부르는 열다섯 곡. 표면은 사랑의 사계절 연가, 그 속은 잃어버린 나라를 향한 네 계절의 애도다. 순사는 술집의 이별가로 듣고, 대한제국을 기억하는 이들은 망국가로 듣는다.</p>
+        <div class="meta-row">
+          <span class="chip">Joseon Jazz</span>
+          <span class="chip">1930s Gyeongseong</span>
+          <span class="chip">15 Tracks</span>
+          <span class="chip">Suno 5.5</span>
+        </div>
+        <button class="play-all" id="playAll">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          앨범 듣기
+        </button>
+      </div>
+    </section>
+
+    <section class="tracklist wrap" id="tracks">
+      <div class="section-head">
+        <h2>TRACKS</h2>
+        <div class="deco"><span class="lozenge">◆ 十五曲 ◆</span></div>
+      </div>
+      <div id="trackHost"></div>
+    </section>
+
+    <section class="panel-section wrap motifs-sec">
+      <div class="card">
+        <div class="section-head"><h2>앨범 모티프</h2></div>
+        <p style="color:var(--txt-dim);text-align:center;font-size:.9rem;margin-bottom:6px">같은 말이 두 갈래로 — 겉과 속이 함께 흐르는 암호어.</p>
+        <div class="motif-grid" id="motifHost"></div>
+      </div>
+    </section>
+
+    <section class="panel-section wrap about">
+      <div class="card">
+        <div class="section-head"><h2>ABOUT</h2></div>
+        <p>「오얏꽃 사계」는 <b style="color:var(--gold-2);font-weight:400">조선 재즈</b> — 서양 재즈악기(피아노·트럼펫·클라리넷)와 한국 전통악기(가야금·해금·대금)를 엮은 1930년대 경성 카바레 양식으로 빚었습니다. 서양 악기는 무대 위 표층을, 한국 악기는 그 아래 은닉된 정체성을 연주합니다.</p>
+        <p>모든 가사는 정치적 단어를 한 번도 쓰지 않습니다. 대신 <b style="color:var(--gold-2);font-weight:400">님·오얏꽃·붉은 실 푸른 실·등불·향</b> 같은 말이 사랑과 망국, 두 문맥에서 동시에 성립하도록 설계되었습니다. 봄에서 다시 봄으로 돌아오는 사계의 순환이 곧 흥망과 회생의 곡선입니다.</p>
+        <p>곡은 Suno 5.5로 생성했고, 작사·편곡 설계는 Achmage OS의 <b style="color:var(--gold-2);font-weight:400">joseon-jazz-album</b> 스킬로 한 앨범 단위로 구성했습니다.</p>
+        <p class="sig">— Produced by Achmage</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="han">李 花 四 季</div>
+    <div>오얏꽃 사계 · Achmage's Joseon Jazz Vol.1</div>
+    <div style="margin-top:8px;opacity:.7">Music generated with Suno 5.5 · Composed with the joseon-jazz-album skill · © 2026 Achmage</div>
+  </footer>
+
+  <div class="player" id="player">
+    <div class="p-left">
+      <img class="p-art" id="pArt" src="images/cover.png" alt="">
+      <div class="p-meta">
+        <div class="p-title" id="pTitle">트랙을 선택하세요</div>
+        <div class="p-sub" id="pSub">오얏꽃 사계</div>
+      </div>
+    </div>
+    <div class="p-center">
+      <div class="p-btns">
+        <button id="prevBtn" title="이전 곡 (←)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg></button>
+        <button class="main" id="playBtn" title="재생/일시정지 (Space)"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+        <button id="nextBtn" title="다음 곡 (→)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+      </div>
+      <div class="p-seek">
+        <span class="p-time" id="curTime">0:00</span>
+        <div class="bar" id="bar"><div class="bar-fill" id="barFill"></div><div class="bar-knob" id="barKnob"></div></div>
+        <span class="p-time" id="durTime">0:00</span>
+      </div>
+    </div>
+    <div class="p-right">
+      <div class="p-vol">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+        <input type="range" id="vol" min="0" max="1" step="0.01" value="0.9">
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+<script>
+const TRACKS = [
+  {n:1,title:"오얏꽃 피던 뜰",season:"봄",tempo:"왈츠 3/4",mood:"그리움",inst:"가야금",cipher:3,
+   surface:"첫사랑과 거닐던 봄 정원의 추억.",
+   hidden:"대한제국 황실(오얏꽃)의 봄, 다시 못 올 개화기의 영화.",
+   lyrics:`오얏꽃 피던 그 뜰\n해가 곱던 한낮\n그대 손을 잡고\n거닐던 길이 있소\n\n담장엔 흰 꽃잎\n바람에 흩날리고\n나는 그저 열일곱\n세상이 다 봄이었소\n\n그 봄을 아시오\n다시 못 올 그 봄을\n꽃그늘 아래에서\n웃던 우리를\n\n오얏꽃, 오얏꽃\n희게 피던 그 뜰에\n나는 아직 서 있소\n지지 않는 봄 하나\n가슴에 묻어 두고\n오늘도 그려 보오\n\n꽃소식은 오는데\n그대는 아니 오고\n흰 꽃만 해마다\n옛 자리 지키오\n\n잊으라 하지 마오\n그 봄을 어이 잊소\n가장 곱던 시절이\n가장 아프오\n\n피어라, 피어라\n그 봄 다시`},
+  {n:2,title:"제비 오던 날",season:"봄",tempo:"미드 스윙 100",mood:"설렘",inst:"클라리넷",cipher:2,
+   surface:"임이 올 것 같은 설레는 봄날.",
+   hidden:"떠난 사람들·주권이 제비처럼 돌아올 거라는 옅은 희망.",
+   lyrics:`처마 끝에 제비가\n다시 돌아온 날\n나는 새 저고리\n곱게 차려입었소\n\n거리엔 햇살이\n사람들 웃음소리\n오늘은 그대가\n오실 것만 같소\n\n설레어 설레어\n발끝이 가볍소\n봄바람 한 자락\n치맛자락 흔드오\n\n제비야 제비야\n강남 갔던 제비야\n그대도 그처럼\n돌아오려나\n처마 밑 옛 둥지\n그대로 두었으니\n오시오 어서 오시오\n\n꽃샘바람 불어도\n오늘은 안 춥소\n기다림도 이런 날엔\n설렘이 되오\n\n혹여 못 오셔도\n서운치 않으리\n제비가 왔으니\n봄은 온 것이오\n\n돌아오오, 돌아오오\n봄처럼`},
+  {n:3,title:"분 바르는 아침",season:"봄",tempo:"폭스트롯 78",mood:"거짓 명랑",inst:"피아노",cipher:3,
+   surface:"무대에 서기 전 분으로 눈물 자국을 가리는 가수.",
+   hidden:"남의 등불(권력) 아래 가면을 쓰고 사는 일상.",
+   lyrics:`거울 앞에 앉아\n분을 곱게 바르오\n어젯밤 운 자국\n하얗게 덮으오\n\n눈썹을 그리고\n연지를 찍으면\n슬픔도 단장하면\n고운 얼굴 되오\n\n오늘 밤도 웃어야지\n손님들 앞에서\n속엣말 한 자락\n분 밑에 숨기고\n\n분을 발라도\n분을 발라도\n지지 않는 그늘 하나\n거울 속 그 얼굴\n웃고 있는데\n눈빛은 우는구려\n\n남의 등불 아래\n설 채비를 하오\n빛날수록 더 짙은\n그림자를 지고\n\n누가 알겠소\n이 분 아래를\n가장 고운 낯이\n가장 깊이 우는 걸\n\n웃어야지, 웃어야지\n오늘 밤도`},
+  {n:4,title:"유월 무대",season:"여름",tempo:"업템포 120",mood:"결연·당당",inst:"합주",cipher:3,
+   surface:"객석이 가득 찬 전성기의 화려한 무대.",
+   hidden:"짧았던 자주의 절정 — 곧 끝날 여름의 한때.",
+   lyrics:`유월의 밤은 뜨겁소\n객석이 가득 찼소\n샹들리에 불빛 아래\n나는 무대에 서오\n\n박수가 쏟아지면\n세상이 다 내 것 같소\n오늘 밤만은 누구도\n나를 못 막으리\n\n울던 일은 잊으오\n오늘은 빛나는 밤\n이 한때가 영원이라\n믿고 싶은 밤\n\n불을 밝혀라\n악단아 울려라\n오늘 밤 이 무대는\n나의 것이오\n짧아도 좋으니\n타오르게 불러 보오\n\n여름은 짧다지만\n지금은 한창이오\n이 밤이 다하기 전\n마음껏 피어나오\n\n누가 알았겠소\n이 여름 끝을\n하나 지금 이 순간\n후회 없이 타오르오\n\n타올라라, 타올라라\n이 여름밤`},
+  {n:5,title:"붉은 실 푸른 실",season:"여름",tempo:"발라드 60",mood:"사랑·맹세",inst:"트럼펫 (듀엣)",cipher:4,
+   surface:"여름밤 두 사람이 끊어지지 않을 매듭을 맺는 듀엣.",
+   hidden:"태극의 붉고 푸른 빛, 끊겨도 다시 맺겠다는 다짐.",
+   lyrics:`붉은 실 한 가닥\n푸른 실 한 가닥\n당신과 나 사이\n매듭을 지었소\n\n그 매듭 풀리지 않게\n이 손에 꼭 쥐리다\n세상이 다 변해도\n이 실만은 두 빛으로\n\n붉고 푸른 그 빛\n바래지 마라\n누가 끊으려 해도\n다시 잇고 또 이으리\n\n붉은 실, 푸른 실\n두 빛이 하나 되어\n이 밤을 묶었소\n멀리 가도 멀어져도\n이 매듭 그대로\n가슴에 품으리\n\n여름밤 짧아도\n이 약속 길으리\n어떤 바람 불어도\n이 빛 지키리다\n\n붉은 빛은 당신\n푸른 빛은 나\n떨어져도 한 매듭\n끊겨도 한 빛\n\n붉게, 푸르게\n오래오래`},
+  {n:6,title:"소나기",season:"여름",tempo:"탱고 90",mood:"불안·공포",inst:"해금",cipher:4,
+   surface:"갑작스런 소나기에 꽃이 질까 불안한 밤.",
+   hidden:"다가오는 망국(소나기=외세의 침탈), 곧 질 오얏꽃.",
+   lyrics:`맑던 하늘이\n검게 몰려오오\n저 무대 위 여자\n얼굴이 굳었소\n\n바람이 차가워지고\n등불이 흔들리오\n무언가 오고 있소\n이 여름 끝에\n\n우르릉 먼 소리\n가슴을 누르오\n웃던 사람들도\n하나둘 멎으오\n\n소나기 온다\n소나기 온다\n피할 처마도 없이\n저 꽃들 다 젖겠네\n곱게 핀 오얏꽃\n비에 다 지겠네\n어쩌나 어쩌나\n\n누구는 모른 채\n잔을 또 비우오\n허나 아는 이들은\n창밖을 보오\n\n이 비가 그치면\n무엇이 남을까\n젖은 거리 위에\n무엇이 설까\n\n온다, 온다\n소나기`},
+  {n:7,title:"강물에 진 잎",season:"가을",tempo:"루바토 64",mood:"회한",inst:"대금",cipher:4,
+   surface:"흘러간 사랑을 강물에 보내는 회한.",
+   hidden:"떠내려가는 주권, 그래도 마르지 않고 이어지는 백성(강물).",
+   lyrics:`한강은 오늘도 흐르오.\n무엇을 실어 가는지도 모르고.\n\n강물에 잎 하나\n소리 없이 지오\n어느 가을이던가\n그대 떠난 것이\n\n물은 늘 그렇소\n잡지 못하는 것\n흘러간 뒤에야\n빈자리가 보이오\n\n돌이킬 수 있다면\n그 가을로 가련만\n물은 거꾸로\n흐르지 않으오\n\n강물아 강물아\n무엇을 실어 가나\n곱던 날도\n설던 정도\n다 싣고 흐르는데\n나만 여기 남아\n지는 잎을 세오\n\n다리 위에 서서\n물그림자 보오\n지워진 얼굴들이\n물결에 어리오\n\n흘러도 흘러도\n마르지 않는 것\n그것이 강이오\n그것이 정이오\n\n흘러라, 흘러라\n강물아`},
+  {n:8,title:"말 없는 가락",season:"가을",tempo:"발라드 60",mood:"체념",inst:"해금·가야금 (연주곡)",cipher:3,
+   surface:"손님 떠난 텅 빈 무대의 막간 연주.",
+   hidden:"입으로 차마 할 수 없는 말을, 해금이 대신 운다.",
+   lyrics:`[ 연주곡 · Instrumental ]\n\n해금과 가야금이\n말없이 주고받는 대화.\n\n입으로 차마 할 수 없는 말을,\n해금이 대신 운다.`},
+  {n:9,title:"가을 등불",season:"가을",tempo:"폭스트롯 78",mood:"억눌린 분노",inst:"피아노·트럼펫",cipher:4,
+   surface:"바람에 꺼져가는 가을 등불 앞의 다짐.",
+   hidden:"시드는 권력(등불)과 빼앗을 수 없는 기억(향), 재 속의 불씨.",
+   lyrics:`가을 등불 하나\n바람에 흔들리오\n지난여름 그 불빛\n어디로 갔나\n\n환하던 거리도\n이제는 침침하고\n웃음소리 자리에\n찬 바람 드오\n\n누가 껐나 그 불을\n묻고 싶은 밤\n허나 입은 다물고\n가락에 묻소\n\n등불은 꺼져도\n향은 남는 법\n타고 남은 자리\n재 속에도 불씨\n누가 다 가져가도\n이 향만은 못 가져가\n가슴에 사르오\n\n남의 불은 환한데\n내 등불은 시들고\n빼앗긴 줄 알면서\n웃어야 하는 밤\n\n꺼진 불 앞에서\n나는 다짐하오\n재가 식기 전에\n무엇을 품을지\n\n사르오, 사르오\n이 향을`},
+  {n:10,title:"오얏꽃 지는 밤",season:"겨울",tempo:"발라드 60",mood:"비탄 (절정)",inst:"합주 (비장)",cipher:5,
+   surface:"첫눈 아래 사랑이 완전히 끝나는 밤.",
+   hidden:"망국의 순간 — 오얏꽃(황실)이 눈에 묻힘. '나라'를 직언한 뒤 곧바로 '그 사람'으로 덮어 한 꺼풀만 남긴다.",
+   lyrics:`첫눈이 오는 밤\n오얏꽃이 지오\n봄에 피던 그 꽃이\n겨울에 지는구려\n\n희던 꽃잎 위에\n흰 눈이 덮이고\n이름도 향기도\n눈 아래 묻히오\n\n끝내 오고야 말았소\n오지 말라던 밤이\n꽃이 다 진 자리\n무엇이 남으리\n\n오얏꽃 지는 밤\n별도 다 숨었소\n곱던 그 나라\n아니, 그 사람\n눈 속에 잠드는데\n나는 부르오\n지지 말라 지지 말라\n\n누구도 못 막았소\n이 겨울이 오는 걸\n가장 곱던 꽃이\n가장 먼저 지오\n\n눈이 그치면\n봄이 올까요\n진 꽃 자리에\n다시 필까요\n\n지지 말라… 지지 말라…\n오얏꽃`},
+  {n:11,title:"붉은 실 끊어지고",season:"겨울",tempo:"루바토 58",mood:"절규 (절정)",inst:"해금",cipher:5,
+   surface:"여름밤 맺은 매듭이 한겨울에 끊어지는 절규.",
+   hidden:"태극이 내려지고 주권이 단절됨 — 그래도 끊긴 실을 모아 다시 잇겠다는 다짐.",
+   lyrics:`붉은 실 끊어지고\n푸른 실 끊어지고\n두 빛이 갈라진 밤\n손이 다 떨리오\n\n여름밤 맺은 매듭\n겨울에 풀리오\n다시 맺자던 약속\n어디로 갔나\n\n누가 끊었나 이 실을\n누가 갈랐나 이 빛을\n묻고 또 물어도\n대답이 없소\n\n붉은 빛 어디 가고\n푸른 빛 어디 갔나\n끊어진 실을 들고\n나는 우오, 우리는 우오\n허나 소리 내지 못해\n가슴으로만 우오\n\n혼자가 아니오\n다들 같은 밤이오\n말 없이 모인 우리\n같은 실을 쥐었소\n\n끊긴 실도 실이오\n두 빛은 안 죽소\n손에 손을 쥐고만 있으면\n언젠가는 다시\n\n붉은 빛 푸른 빛\n끊겨도 두 빛이오\n끊어진 실을 모아\n우리는 다시 잇소\n오늘은 울어도\n이 빛 안 놓으리\n\n붉게… 푸르게…\n다시`},
+  {n:12,title:"눈 내리는 정거장",season:"겨울",tempo:"탱고 88",mood:"공포·이별",inst:"트럼펫",cipher:4,
+   surface:"눈 내리는 정거장에서 떠나야 하는 사람의 이별가.",
+   hidden:"강제된 떠남과 흩어진 사람들(정거장·북행), 눈 그치면 돌아오겠다는 약속.",
+   lyrics:`눈 내리는 정거장\n기차가 울고 있소\n나는 떠나야 하오\n이 밤이 가기 전에\n\n돌아보면 그대가\n플랫폼 끝에 섰소\n손을 들지도 못하고\n눈만 맞고 섰소\n\n가지 마라 말 못 하고\n가야 한다 말 못 하고\n우리 사이 흰 눈만\n소리 없이 쌓이오\n\n기차가 떠나오\n정든 이 거리를\n두고 가야 하오\n이름도 두고\n집도 두고\n눈 속에 다 묻고\n나는 떠나오\n\n어디로 가는지는\n나도 모르오\n다만 떠밀려서\n북으로 가오\n\n잊지 마오 그대여\n이 정거장을\n언젠가 눈 그치면\n돌아오리다\n\n떠나오… 떠나오…\n눈 속으로`},
+  {n:13,title:"언 강 풀리는 소리",season:"다시 봄",tempo:"루바토 66",mood:"희미한 희망",inst:"대금·가야금",cipher:3,
+   surface:"긴 겨울 끝, 얼었던 강이 풀리는 초봄.",
+   hidden:"멈췄던 역사가 다시 흐를 기미 — 강(백성)은 한 번도 죽지 않았다.",
+   lyrics:`얼었던 강에서\n물소리가 나오\n겨우내 멈췄던 것이\n다시 흐르려나 보오\n\n얼음장 밑으로\n실금이 가고\n누가 듣지 못해도\n봄이 오고 있소\n\n크게 말하진 마오\n아직 이른 봄이오\n허나 이 소리만은\n틀림없는 봄이오\n\n언 강 풀리는 소리\n가만히 들어 보오\n얼음 아래 그 물이\n한 번도 안 멈췄소\n겨울이 길었어도\n강은 안 죽었소\n흐르오 다시 흐르오\n\n나는 그 겨울 몰라\n어머니가 우시던 밤\n허나 이 봄 강가에서\n그 노래를 들었소\n\n잊지 않으면\n그것이 흐름이오\n부르고 또 부르면\n강은 이어지오\n\n흐르오… 흐르오…\n다시 봄`},
+  {n:14,title:"향만은 남아",season:"다시 봄",tempo:"폭스트롯 78",mood:"체념·위안",inst:"가야금",cipher:3,
+   surface:"모든 걸 잃어도 가슴에 밴 향(추억)만은 남는다는 위안.",
+   hidden:"나라는 빼앗겨도 정체성·기억(향)은 누구도 못 가져간다.",
+   lyrics:`다 가져가도 좋소\n이름도 등불도\n허나 한 가지\n가져가지 못한 것\n\n저고리 깊은 곳\n접어 둔 향 하나\n눈에 안 보여도\n밤마다 피어나오\n\n울지 마오 그대\n다 잃은 것 아니오\n보이는 건 갔어도\n배인 건 남았소\n\n향만은 남아\n향만은 남아\n꽃이 다 진 자리에도\n지지 않는 것 하나\n남의 손이 닿지 못할\n가슴 깊은 그 자리\n오늘도 피어나오\n\n우리 다 같이\n그 향을 품었소\n말 안 해도 아는\n같은 향이오\n\n꽃은 또 피오\n계절은 돌고\n향을 잊지 않으면\n봄은 또 오오\n\n남아… 남아…\n향만은`},
+  {n:15,title:"다시 오얏꽃",season:"다시 봄",tempo:"왈츠 3/4",mood:"희망·다짐",inst:"합주 (따뜻)",cipher:3,
+   surface:"봄과 사랑이 정원에 돌아오는 피날레. 01번의 회귀.",
+   hidden:"다시 나라가 필까 — 뿌리는 살아 있었다는 봉인된 희망, 다음 세대로 전승.",
+   lyrics:`오얏꽃 피던 뜰\n다시 봄이 왔소\n긴 겨울 지난 자리\n흙을 뚫고 싹이 오오\n\n졌다고 끝이 아니오\n묻혔다고 죽은 게 아니오\n뿌리는 그 자리\n겨우내 살아 있었소\n\n그 봄을 기억하오\n다시 못 올 줄 알았던\n허나 보오 저 가지에\n흰 봉오리 맺히오\n\n오얏꽃, 오얏꽃\n다시 피는 그 뜰에\n우리 모두 섰소\n졌던 그 꽃이\n같은 자리에\n또 피어나려 하오\n보오 보오 봄이오\n\n나 혼자 부르던 노래\n이제 다 같이 부르오\n열일곱 그 봄을\n손주에게 들려주오\n\n제비도 돌아오고\n언 강도 풀리고\n향도 아직 남았으니\n오얏꽃 다시 피오\n\n피어라, 피어라\n다시 오얏꽃\n그 봄 다시`}
+];
+
+const MOTIFS = [
+  {key:"오얏꽃", surface:"그리운 꽃", hidden:"대한제국 황실(이씨)", tracks:"01 핌 · 10 짐 · 15 다시 핌"},
+  {key:"붉은 실, 푸른 실", surface:"사랑의 매듭", hidden:"태극의 붉고 푸른 빛", tracks:"05 맺음 · 11 끊김"},
+  {key:"강물 / 언 강", surface:"흐르는 세월", hidden:"이어지는 백성·역사", tracks:"07 잎 짐 · 13 풀림"},
+  {key:"향(香)", surface:"남은 잔향", hidden:"남아있는 기억", tracks:"09 · 14"},
+  {key:"제비", surface:"봄 손님", hidden:"떠났다 돌아오는 것", tracks:"02 옴 · 15 다시"},
+  {key:"등불 / 남의 등불", surface:"가게의 등불", hidden:"남의 권력 아래의 밤", tracks:"03 · 09"}
+];
+
+const SEASONS = ["봄","여름","가을","겨울","다시 봄"];
+const SEASON_HAN = {"봄":"春","여름":"夏","가을":"秋","겨울":"冬","다시 봄":"再春"};
+const SEASON_VAR = {"봄":"--spring","여름":"--summer","가을":"--autumnc","겨울":"--winter","다시 봄":"--rebirth"};
+
+const PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+const PAUSE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
+
+const audio = document.getElementById('audio');
+let current = -1;
+
+// ---- render tracklist ----
+const host = document.getElementById('trackHost');
+SEASONS.forEach(se=>{
+  const grp = document.createElement('div'); grp.className='season-group';
+  const lbl = document.createElement('div'); lbl.className='season-label';
+  lbl.style.setProperty('--season',`var(${SEASON_VAR[se]})`);
+  lbl.innerHTML = `${se} <span class="han">${SEASON_HAN[se]}</span>`;
+  grp.appendChild(lbl);
+  TRACKS.filter(t=>t.season===se).forEach(t=>{
+    const cipher = '<span class="t-cipher">'+ '●'.repeat(t.cipher).split('').map(()=>'<span class="on">●</span>').join('') + '<span class="off">'+'○'.repeat(5-t.cipher)+'</span>' + '</span>';
+    const el = document.createElement('div');
+    el.className='track'; el.dataset.idx = t.n-1;
+    el.style.setProperty('--season',`var(${SEASON_VAR[se]})`);
+    el.innerHTML = `
+      <div class="track-row">
+        <div class="t-num">${String(t.n).padStart(2,'0')}</div>
+        <div class="t-main">
+          <div class="t-title">${t.title}</div>
+          <div class="t-coord">${t.tempo} · ${t.mood} · ${t.inst}</div>
+        </div>
+        ${cipher}
+        <div class="t-play">${PLAY_SVG}</div>
+      </div>
+      <div class="t-detail"><div class="t-detail-inner">
+        <div class="lyric">${renderLyric(t.lyrics)}</div>
+        <div class="dual">
+          <div class="d-box surface"><span class="d-label">Surface <span class="ko-label">· 순사의 귀</span></span>${t.surface}</div>
+          <div class="d-box hidden"><span class="d-label">Hidden <span class="ko-label">· 우리의 귀</span></span>${t.hidden}</div>
+        </div>
+      </div></div>`;
+    el.querySelector('.track-row').addEventListener('click',()=>selectTrack(t.n-1));
+    grp.appendChild(el);
+  });
+  host.appendChild(grp);
+});
+
+function renderLyric(s){
+  return s.split('\n\n').map(st=>{
+    const cls = st.startsWith('[') ? 'stanza instrumental' : 'stanza';
+    return `<p class="${cls}">${st.split('\n').join('<br>')}</p>`;
+  }).join('');
+}
+
+// ---- motifs ----
+const mhost = document.getElementById('motifHost');
+MOTIFS.forEach(m=>{
+  const el=document.createElement('div'); el.className='motif';
+  el.innerHTML=`<div class="m-key">${m.key}</div><div class="m-body">${m.surface} &nbsp;→&nbsp; <b>${m.hidden}</b><br><span style="opacity:.7">${m.tracks}</span></div>`;
+  mhost.appendChild(el);
+});
+
+// ---- player ----
+const tracksEls = ()=>[...document.querySelectorAll('.track')];
+const player=document.getElementById('player');
+const playBtn=document.getElementById('playBtn'), playIcon=document.getElementById('playIcon');
+const pTitle=document.getElementById('pTitle'), pSub=document.getElementById('pSub');
+
+function selectTrack(i, autoplay=true){
+  const t=TRACKS[i];
+  if(current!==i){
+    current=i;
+    audio.src=`audio/${String(t.n).padStart(2,'0')}.mp3`;
+    pTitle.textContent=`${String(t.n).padStart(2,'0')}. ${t.title}`;
+    pSub.textContent=`${t.season} · ${t.tempo} · ${t.mood}`;
+  }
+  tracksEls().forEach(el=>el.classList.toggle('active', +el.dataset.idx===i));
+  player.classList.add('show');
+  const card=tracksEls().find(el=>+el.dataset.idx===i);
+  if(autoplay){ audio.play().catch(()=>{}); }
+  if(card){ const y=card.getBoundingClientRect().top+window.scrollY-90; window.scrollTo({top:y,behavior:'smooth'}); }
+}
+function togglePlay(){
+  if(current<0){ selectTrack(0); return; }
+  if(audio.paused) audio.play().catch(()=>{}); else audio.pause();
+}
+function next(){ selectTrack((current+1)%TRACKS.length); }
+function prev(){ if(audio.currentTime>3){audio.currentTime=0;return;} selectTrack((current-1+TRACKS.length)%TRACKS.length); }
+
+playBtn.onclick=togglePlay;
+document.getElementById('nextBtn').onclick=next;
+document.getElementById('prevBtn').onclick=prev;
+document.getElementById('playAll').onclick=()=>selectTrack(0);
+
+audio.addEventListener('play',()=>{ playIcon.outerHTML=PAUSE_SVG.replace('<svg','<svg id="playIcon"'); refreshIcon(); document.body.classList.add('playing'); updateTrackIcons(true); });
+audio.addEventListener('pause',()=>{ document.body.classList.remove('playing'); updateTrackIcons(false); refreshIcon(); });
+audio.addEventListener('ended',next);
+function refreshIcon(){ const ic=document.getElementById('playIcon'); if(ic) ic.outerHTML=(audio.paused?PLAY_SVG:PAUSE_SVG).replace('<svg','<svg id="playIcon"'); }
+function updateTrackIcons(playing){
+  tracksEls().forEach(el=>{
+    const ic=el.querySelector('.t-play');
+    const activeNow = el.classList.contains('active') && playing;
+    ic.innerHTML = activeNow ? PAUSE_SVG : PLAY_SVG;
+  });
+}
+
+// seek bar
+const bar=document.getElementById('bar'), barFill=document.getElementById('barFill'), barKnob=document.getElementById('barKnob');
+const curTime=document.getElementById('curTime'), durTime=document.getElementById('durTime');
+const fmt=s=>{ if(isNaN(s))return'0:00'; const m=Math.floor(s/60),x=Math.floor(s%60); return `${m}:${String(x).padStart(2,'0')}`; };
+audio.addEventListener('loadedmetadata',()=>durTime.textContent=fmt(audio.duration));
+audio.addEventListener('timeupdate',()=>{
+  const p=audio.currentTime/audio.duration*100||0;
+  barFill.style.width=p+'%'; barKnob.style.left=p+'%'; curTime.textContent=fmt(audio.currentTime);
+});
+function seekTo(clientX){ const r=bar.getBoundingClientRect(); const p=Math.min(1,Math.max(0,(clientX-r.left)/r.width)); if(audio.duration) audio.currentTime=p*audio.duration; }
+let seeking=false;
+bar.addEventListener('mousedown',e=>{seeking=true;seekTo(e.clientX);});
+window.addEventListener('mousemove',e=>{if(seeking)seekTo(e.clientX);});
+window.addEventListener('mouseup',()=>seeking=false);
+bar.addEventListener('click',e=>seekTo(e.clientX));
+bar.addEventListener('touchstart',e=>seekTo(e.touches[0].clientX),{passive:true});
+bar.addEventListener('touchmove',e=>seekTo(e.touches[0].clientX),{passive:true});
+
+// volume
+const vol=document.getElementById('vol'); audio.volume=0.9;
+vol.addEventListener('input',()=>audio.volume=vol.value);
+
+// keyboard
+document.addEventListener('keydown',e=>{
+  if(['INPUT','TEXTAREA'].includes(e.target.tagName))return;
+  if(e.code==='Space'){e.preventDefault();togglePlay();}
+  else if(e.code==='ArrowRight')next();
+  else if(e.code==='ArrowLeft')prev();
+});
+</script>
+</body>
+</html>
