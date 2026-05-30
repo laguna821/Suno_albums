@@ -13,5 +13,19 @@
       "1930s 경성",
       "Suno 5.5"
     ]
+  },
+  {
+    "slug": "ihwa-sagye",
+    "kicker": "Joseon Jazz · Vol.1",
+    "title": "오얏꽃 사계",
+    "hanja": "李花四季",
+    "desc": "사라진 나라를 향한 네 계절. 1930년대 경성 재즈 카바레, 15트랙 컨셉 앨범.",
+    "cover": "ihwa-sagye/images/cover.png",
+    "badge": "Vol.1",
+    "meta": [
+      "15 Tracks",
+      "1930s 경성",
+      "Suno 5.5"
+    ]
   }
 ]
