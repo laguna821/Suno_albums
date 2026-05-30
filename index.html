@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<!--
+  joseon-jazz-album · gallery (landing) template (Achmage OS)
+  publish-album.py 가 [
+  {
+    "slug": "kkot-bureuji-mao",
+    "kicker": "Joseon Jazz · Vol.2",
+    "title": "나를 꽃이라 부르지 마오",
+    "hanja": "玄",
+    "desc": "의열단 최초의 여성 단원 현계옥의 일생. 세상이 본 나(꽃)와 진짜 나(칼), 15트랙 컨셉 앨범.",
+    "cover": "kkot-bureuji-mao/images/cover.png",
+    "badge": "Vol.2",
+    "meta": [
+      "15 Tracks",
+      "현계옥",
+      "1930s 경성",
+      "Suno 5.5"
+    ]
+  }
+] / 玄 토큰을 치환해 repo 루트 index.html 로 생성한다.
+  ALBUMS = repo 루트 albums.json 레지스트리(single source of truth)에서 주입.
+  새 앨범 publish 마다 레지스트리에 객체 1개 append 후 이 템플릿으로 전체 재생성.
+-->
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -7,8 +29,8 @@
 <meta name="description" content="Achmage가 Suno로 빚은 앨범 컬렉션. 조선 재즈를 비롯한 AI 음악 앨범.">
 <meta property="og:title" content="Achmage · Suno Albums">
 <meta property="og:description" content="Achmage가 Suno로 빚은 앨범 컬렉션.">
-<meta property="og:image" content="ihwa-sagye/images/cover.png">
-<link rel="icon" href="ihwa-sagye/images/cover.png">
+<meta property="og:image" content="kkot-bureuji-mao/images/cover.png">
+<link rel="icon" href="kkot-bureuji-mao/images/cover.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Gowun+Batang:wght@400;700&family=Noto+Serif+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -88,23 +110,27 @@
   </main>
 
   <footer>
-    <div class="han">李 花 四 季</div>
+    <div class="han">玄</div>
     <div>© 2026 Achmage · Made with Suno 5.5</div>
   </footer>
 
 <script>
 const ALBUMS = [
   {
-    slug:"ihwa-sagye",
-    kicker:"Joseon Jazz · Vol.1",
-    title:"오얏꽃 사계",
-    hanja:"李花四季",
-    desc:"사라진 나라를 향한 네 계절. 1930년대 경성 재즈 카바레, 15트랙 컨셉 앨범.",
-    cover:"ihwa-sagye/images/cover.png",
-    badge:"Vol.1",
-    meta:["15 Tracks","1930s 경성","Suno 5.5"]
+    "slug": "kkot-bureuji-mao",
+    "kicker": "Joseon Jazz · Vol.2",
+    "title": "나를 꽃이라 부르지 마오",
+    "hanja": "玄",
+    "desc": "의열단 최초의 여성 단원 현계옥의 일생. 세상이 본 나(꽃)와 진짜 나(칼), 15트랙 컨셉 앨범.",
+    "cover": "kkot-bureuji-mao/images/cover.png",
+    "badge": "Vol.2",
+    "meta": [
+      "15 Tracks",
+      "현계옥",
+      "1930s 경성",
+      "Suno 5.5"
+    ]
   }
-  // 다음 앨범은 여기에 객체를 추가하고 같은 형식의 폴더를 만들면 됩니다.
 ];
 
 const PLAY = '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
